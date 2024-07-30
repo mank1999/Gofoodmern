@@ -1,6 +1,13 @@
 import React from "react";
+import img1 from '../img/foods.png'
+import img2 from '../img/food2.png'
+import img3 from '../img/food3.png'
 
-const Carousel = () => {
+const Carousel = ({setSearch,search} ) => {
+  const onSerch = (e)=>{
+    setSearch(e.target.value)
+  }
+  
   return (
     <div >
       <div id="carouselExampleCaptions" className="carousel slide" style={{objectFit:'contain !important'}}>
@@ -28,23 +35,25 @@ const Carousel = () => {
         </div>
         <div className="carousel-inner " id="carousel">
           <div className="carousel-caption" style={{paddingBottom:'200px'}}>
-            <form className="d-flex" role="search">
+            <div className="d-flex" role="search">
               <input
+              value={search}
+              onChange={onSerch}
                 className="form-control me-2"
                 type="text"
                 placeholder="Search"
                 aria-label="Search"
               />
-              <button className="btn btn-outline-success" type="submit">
+              {/* <button className="btn btn-outline-success" type="submit">
                 Search
-              </button>
-            </form>
+              </button> */}
+            </div>
           </div>
           <div className="carousel-item active">
             <img
-              src="https://source.unsplash.com/random/900×700/?maggie"
+              src={img1}
               className="d-block w-100"
-              alt="biryani" style={{filter : 'brightness(45%)'}}
+              alt="biryani" style={{filter : 'brightness(70%)'}}
             />
             <div className="carousel-caption d-none d-md-block">
               <h5>First slide label</h5>
@@ -55,10 +64,10 @@ const Carousel = () => {
           </div>
           <div className="carousel-item">
             <img
-              src="https://source.unsplash.com/random/900×700/?biryani"
+              src={img2}
               className="d-block w-100"
               alt="..."
-              style={{filter : 'brightness(45%)'}}
+              style={{filter : 'brightness(70%)'}}
             />
             <div className="carousel-caption d-none d-md-block">
               <h5>Second slide label</h5>
@@ -69,10 +78,10 @@ const Carousel = () => {
           </div>
           <div className="carousel-item">
             <img
-              src="https://source.unsplash.com/random/900×700?chicken"
+              src={img3}
               className="d-block w-100"
               alt="..."
-              style={{filter : 'brightness(45%)'}}
+              style={{filter : 'brightness(70%)'}}
             />
             <div className="carousel-caption d-none d-md-block">
               <h5>Third slide label</h5>

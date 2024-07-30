@@ -30,10 +30,12 @@ const Login = () => {
       const data = await Response.json();
       console.log(data);
       if (!data.success) {
-        alert("Enter valid credentials");
+        alert("enter valid credentils");
       }
       if (data.success) {
         localStorage.setItem("authToken", data.authToken);
+        localStorage.setItem("userEmail", credentials.email);
+
         navigate("/");
       }
     } catch (err) {

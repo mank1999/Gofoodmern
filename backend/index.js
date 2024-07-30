@@ -28,6 +28,8 @@ app.get("/hello", query("person").notEmpty().escape(), (req, res) => {
 });
 app.use(express.json());
 app.use("/api", router);
+app.use("/api", require('./Routes/DisplayData'));
+app.use("/api", require('./Routes/Orderdata'))
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
