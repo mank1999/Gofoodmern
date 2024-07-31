@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-const URL = "http://localhost:5000";
+const URL = "https://gofoodmern-backend-cpmu.onrender.com";
 const Login = () => {
   const navigate = useNavigate();
   const [credentials, setCredentials] = useState({
