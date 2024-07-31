@@ -4,7 +4,7 @@ import { DeleteIcon} from '@chakra-ui/icons'
 import { Button } from "@chakra-ui/react";
 
 const Cart = () => {
-  const url = 'http://localhost:5000'
+  const url = 'https://gofoodmern-backend-cpmu.onrender.com'
   let data = useCart();
   let dispatch = useDispatch();
   let totalPrice = data.reduce((total, food) => total + food.price, 0);
