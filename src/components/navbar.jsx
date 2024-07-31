@@ -7,7 +7,7 @@ const Navbar = () => {
   let data = useCart();
   const navigate = useNavigate();
   const handlrLogout = () => {
-    localStorage.removeItem("authToken");
+    sessionStorage.removeItem("authToken");
     navigate("/login");
   };
   const [modalView, setModalView] = useState(false);
@@ -44,7 +44,7 @@ const Navbar = () => {
                 </Link>
               </li>
 
-              {localStorage.getItem("authToken") ? (
+              {sessionStorage.getItem("authToken") ? (
                 <Link className="text-white fs-5" aria-current="page" to="/myorder">
                   My Orders
                 </Link>
@@ -53,7 +53,7 @@ const Navbar = () => {
               )}
             </ul>
             <div style={{ justifyContent: "right" }}>
-              {!localStorage.getItem("authToken") ? (
+              {!sessionStorage.getItem("authToken") ? (
                 <div className="d-flex">
                   <Link
                     className="btn bg-white text-success mx-1 fs-5"

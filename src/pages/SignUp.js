@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 const SignUp = () => {
   const [credentials, setCredentials] = useState({
     name: "",
@@ -7,11 +8,13 @@ const SignUp = () => {
     password: "",
     geolocation: "",
   });
+  const navigate = useNavigate()
+  const URL = "http://localhost:5000";
   const handlevalue = (e) => {
     const { value, name } = e.target;
     setCredentials({ ...credentials, [name]: value });
   };
-  const url = "http://localhost:5000/api/createuser";
+  const url = URL + "/api/createuser";
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -29,9 +32,11 @@ const SignUp = () => {
         }),
       });
       const data = await Response.json();
-      console.log(data);
-      if(!data.success){
-        alert("Enter valid credentials")
+      if(data?.success === true){
+        navigate('/login')
+      }
+      if (!data.success) {
+        alert("Enter valid credentials");
       }
     } catch (err) {
       console.log(err);

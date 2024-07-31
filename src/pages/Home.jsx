@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../components/navbar";
 import Footer from "../components/Footer";
-
 import Cards from "../components/Cards";
 import Carousel from "../components/Carousel";
 
 const Home = () => {
   const [foodCatg, setFoodCatg] = useState([]);
   const [foodItem, setFoodItem] = useState([]);
-  const [search,setSearch] = useState("");
+  const [search, setSearch] = useState("");
+  const URL = "http://localhost:5000";
+  const Username = sessionStorage.getItem("username");
   const loadData = async () => {
-    let url = "http://localhost:5000/api/foodData";
+    let url = URL + "/api/foodData";
     let response = await fetch(url, {
       method: "POST",
       headers: {
@@ -28,9 +29,12 @@ const Home = () => {
 
   return (
     <div>
-      <Navbar  />
+      <Navbar />
       <div>
-        <Carousel setSearch={setSearch} search={search}/>
+        <p style={{fontSize:'30px',fontWeight:'500', fontStyle:'italic',padding:'10px 10px'}}>Hello {Username?.split(' ')[0]}, What's on your mind?</p>
+      </div>
+      <div>
+        <Carousel setSearch={setSearch} search={search} />
       </div>
       <div className="container">
         {foodCatg !== [] ? (
@@ -56,8 +60,7 @@ const Home = () => {
                       >
                         {" "}
                         <Cards
-                        filterItem= {filterItem}
-                          
+                          filterItem={filterItem}
                           options={filterItem.options[0]}
                         />
                       </div>

@@ -1,9 +1,11 @@
 const express = require("express");
 const router = require("./Routes/Createuser");
 const { query, validationResult, matchedData } = require("express-validator");
+require('dotenv').config()
 // const EmployeeRoutes = require('./praacticeDb/routes/empRoute')
 const app = express();
-const port = 5000;
+const port = process.env.port_no || 5000;
+console.log('env port' ,process.env.port_no)
 const MongoDB = require("./db");
 MongoDB();
 app.use((req, res, next) => {

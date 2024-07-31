@@ -11,15 +11,16 @@ import {
 } from "@chakra-ui/react";
 const Myorder = () => {
   const [myOrders, setMyOrders] = useState([]);
+  const URL = "http://localhost:5000"
   const fetchMyOrder = async () => {
     try {
-      let url = "http://localhost:5000/api/myorderdata";
+      let url = URL + "/api/myorderdata";
       let response = await fetch(url, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email: localStorage.getItem("userEmail") }),
+        body: JSON.stringify({ email: sessionStorage.getItem("userEmail") }),
       });
       response = await response.json();
       await setMyOrders(response);

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-
+const URL = "http://localhost:5000";
 const Login = () => {
   const navigate = useNavigate();
   const [credentials, setCredentials] = useState({
@@ -11,7 +11,7 @@ const Login = () => {
     const { value, name } = e.target;
     setCredentials({ ...credentials, [name]: value });
   };
-  const url = "http://localhost:5000/api/userlogin";
+  const url = URL + "/api/userlogin";
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(credentials);
@@ -28,13 +28,14 @@ const Login = () => {
         }),
       });
       const data = await Response.json();
-      console.log(data);
+      console.log('log in ',data);
       if (!data.success) {
         alert("enter valid credentils");
       }
       if (data.success) {
-        localStorage.setItem("authToken", data.authToken);
-        localStorage.setItem("userEmail", credentials.email);
+        sessionStorage.setItem("authToken", data?.authToken);
+        sessionStorage.setItem("userEmail", credentials.email);
+        sessionStorage.setItem("username", data?.UserName);
 
         navigate("/");
       }

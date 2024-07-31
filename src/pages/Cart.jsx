@@ -4,6 +4,7 @@ import { DeleteIcon} from '@chakra-ui/icons'
 import { Button } from "@chakra-ui/react";
 
 const Cart = () => {
+  const url = 'http://localhost:5000'
   let data = useCart();
   let dispatch = useDispatch();
   let totalPrice = data.reduce((total, food) => total + food.price, 0);
@@ -17,7 +18,7 @@ const Cart = () => {
 
   const handleCheckout = async() =>{
      let userEmail = localStorage.getItem('userEmail')
-     let Response = await fetch('http://localhost:5000/api/orderdata',{
+     let Response = await fetch(url+'/api/orderdata',{
       method : 'POST',
       headers :{
         "Content-Type" : "application/json"

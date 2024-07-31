@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
-const dbUrl =
-  "mongodb+srv://Gofood:HlCPTRZLm5dht0Pe@cluster0.qaddbc3.mongodb.net/Gofood?retryWrites=true&w=majority&appName=Cluster0";
-  // const urldb = "mongodb+srv://Gofood:HlCPTRZLm5dht0Pe@cluster0.qaddbc3.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+require('dotenv').config()
+const dbUrl = process.env.mongoDB_URL;
 const MongoDB = async () => {
   try {
     await mongoose.connect(dbUrl, {
