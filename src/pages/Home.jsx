@@ -8,7 +8,7 @@ const Home = () => {
   const [foodCatg, setFoodCatg] = useState([]);
   const [foodItem, setFoodItem] = useState([]);
   const [search, setSearch] = useState("");
-  const URL = "http://localhost:5000";
+  const URL = "https://gofoodmern-backend-cpmu.onrender.com";
   const Username = sessionStorage.getItem("username");
   const loadData = async () => {
     let url = URL + "/api/foodData";
