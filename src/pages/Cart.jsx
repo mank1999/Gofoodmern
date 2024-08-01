@@ -1,10 +1,11 @@
 import React from "react";
 import { useCart, useDispatch } from "../components/ContextReducer";
 import { DeleteIcon} from '@chakra-ui/icons'
-import { Button } from "@chakra-ui/react";
-
+import { Button, Text } from "@chakra-ui/react";
+import { useToast } from "@chakra-ui/react";
 const Cart = () => {
   const url = 'http://localhost:5000'
+  const toast = useToast();
   let data = useCart();
   let dispatch = useDispatch();
   let totalPrice = data.reduce((total, food) => total + food.price, 0);
@@ -45,7 +46,7 @@ const Cart = () => {
             <th scope="col">Amount</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody style={{color:'black'}}>
           {data.map((food, index) => (
             <tr key={index}>
               <th scope="row">{index + 1}</th>
@@ -60,16 +61,19 @@ const Cart = () => {
                   onClick={() => {
                     dispatch({ type: "REMOVE", inde: index });
                   }}
-                ><DeleteIcon/></button>
+                ><DeleteIcon color='black' /></button>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
       <div className=" fs-4" style={{marginTop:'auto'}}>
+        <Text fontSize='20px'fontWeight='500'>
+
         Total Price : {totalPrice} /-
+        </Text>
       </div>
-      <Button variant='red' ml='auto' onClick={handleCheckout}>Checkout</Button>
+      <Button colorScheme="red" ml='auto' mt='20px' onClick={handleCheckout}>Checkout</Button>
     </div>
 
   );

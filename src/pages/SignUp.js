@@ -1,14 +1,17 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { Box, Input, Flex, Text, Button } from "@chakra-ui/react";
+import { useToast } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 const SignUp = () => {
+  const toast = useToast();
   const [credentials, setCredentials] = useState({
     name: "",
     email: "",
     password: "",
     geolocation: "",
   });
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const URL = "http://localhost:5000";
   const handlevalue = (e) => {
     const { value, name } = e.target;
@@ -32,8 +35,14 @@ const SignUp = () => {
         }),
       });
       const data = await Response.json();
-      if(data?.success === true){
-        navigate('/login')
+      if (data?.success === true) {
+        toast({
+          title: "User Create Successfully",
+          status: "success",
+          duration: 9000,
+          isClosable: true,
+        });
+        navigate("/login");
       }
       if (!data.success) {
         alert("Enter valid credentials");
@@ -44,67 +53,105 @@ const SignUp = () => {
   };
   return (
     <>
-      <div className="container">
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label htmlFor="exampleInputPassword1">Full Name</label>
-            <input
-              name="name"
-              value={credentials.name}
-              onChange={handlevalue}
-              type="text"
-              className="form-control"
-              id="exampleInputPassword1"
-              placeholder="Enter Name.."
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="exampleInputEmail1">Email address</label>
-            <input
-              name="email"
-              onChange={handlevalue}
-              value={credentials.email}
-              type="email"
-              className="form-control"
-              id="exampleInputEmail1"
-              aria-describedby="emailHelp"
-              placeholder="Enter email"
-            />
-            <small id="emailHelp" className="form-text text-muted">
-              We'll never share your email with anyone else.
-            </small>
-          </div>
-          <div className="form-group">
-            <label htmlFor="exampleInputPassword1">Password</label>
-            <input
-              name="password"
-              onChange={handlevalue}
-              value={credentials.password}
-              type="password"
-              className="form-control"
-              id="exampleInputPassword1"
-              placeholder="Password"
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="exampleInputPassword1">Address</label>
-            <input
-              name="geolocation"
-              value={credentials.geolocation}
-              onChange={handlevalue}
-              type="text"
-              className="form-control"
-              id="exampleInputPassword1"
-              placeholder=" Enter address here"
-            />
-          </div>
-          <button type="submit" className="mt-3-btn btn-success">
-            Submit
-          </button>
-          <Link to="/login" type="button" className="m-3 btn btn-danger">
-            Already have User
-          </Link>
-        </form>
+      <div>
+        <Flex justifyContent="center" padding="20px 20px">
+          <Text fontSize="30px" fontWeight="500" fontStyle="italic">
+            Register Here...
+          </Text>
+        </Flex>
+        <Flex justifyContent="center" padding="50px 50px" gap="5px 5px">
+          <Box width="800px">
+            <form onSubmit={handleSubmit}>
+              <div>
+                <Text fontSize="15px" htmlFor="exampleInputPassword1">
+                  Full Name
+                </Text>
+                <Input
+                  name="name"
+                  value={credentials.name}
+                  onChange={handlevalue}
+                  type="text"
+                  id="exampleInputPassword1"
+                  placeholder="Enter Name.."
+                  border="1px"
+                  height="40px"
+                  isRequired
+                />
+              </div>
+              <div className="form-group" style={{ paddingTop: "5px" }}>
+                <Text fontSize="15px" htmlFor="exampleInputEmail1">
+                  Email address
+                </Text>
+                <Input
+                  name="email"
+                  onChange={handlevalue}
+                  value={credentials.email}
+                  type="email"
+                  id="exampleInputEmail1"
+                  aria-describedby="emailHelp"
+                  placeholder="Enter email"
+                  border="1px"
+                  height="40px"
+                  isRequired
+                />
+                <small id="emailHelp" className="form-text text-muted">
+                  We'll never share your email with anyone else.
+                </small>
+              </div>
+              <div className="form-group">
+                <Text fontSize="15px" htmlFor="exampleInputPassword1">
+                  Password
+                </Text>
+                <Input
+                  name="password"
+                  onChange={handlevalue}
+                  value={credentials.password}
+                  type="password"
+                  id="exampleInputPassword1"
+                  placeholder="Password"
+                  border="1px"
+                  height="40px"
+                  isRequired
+                />
+              </div>
+              <div className="form-group">
+                <Text fontSize="15px" htmlFor="exampleInputPassword1">
+                  Address
+                </Text>
+                <Input
+                  name="geolocation"
+                  value={credentials.geolocation}
+                  onChange={handlevalue}
+                  type="text"
+                  id="exampleInputPassword1"
+                  placeholder=" Enter address here"
+                  border="1px"
+                  height="40px"
+                  isRequired
+                />
+              </div>
+              <Flex
+                padding="10px 50px"
+                justifyContent="space-around"
+                paddingTop="30px"
+              >
+                <Button
+                  type="submit"
+                  colorScheme="red"
+                  variant="solid"
+                  size="lg"
+                >
+                 Register
+                </Button>
+                <Button  size="lg">
+                  <Link to="/login" type="button">
+                    Already have User
+                  </Link>
+                </Button>
+              </Flex>
+            </form>
+          </Box>
+        </Flex>
       </div>
     </>
   );
