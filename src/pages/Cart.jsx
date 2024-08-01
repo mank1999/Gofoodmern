@@ -4,7 +4,7 @@ import { DeleteIcon} from '@chakra-ui/icons'
 import { Button, Text } from "@chakra-ui/react";
 import { useToast } from "@chakra-ui/react";
 const Cart = () => {
-  const url = 'http://localhost:5000'
+  const url = 'https://gofoodmern-backend-cpmu.onrender.com'
   const toast = useToast();
   let data = useCart();
   let dispatch = useDispatch();

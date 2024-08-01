@@ -11,7 +11,7 @@ import {
 } from "@chakra-ui/react";
 const Myorder = () => {
   const [myOrders, setMyOrders] = useState([]);
-  const URL = "http://localhost:5000"
+  const URL = "https://gofoodmern-backend-cpmu.onrender.com"
   const fetchMyOrder = async () => {
     try {
       let url = URL + "/api/myorderdata";

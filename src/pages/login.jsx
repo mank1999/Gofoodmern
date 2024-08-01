@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Box, Input, Flex, Text, Button } from "@chakra-ui/react";
 import { useToast } from "@chakra-ui/react";
-const URL = "http://localhost:5000";
+const URL = "https://gofoodmern-backend-cpmu.onrender.com";
 const Login = () => {
   const toast = useToast();
   const navigate = useNavigate();

@@ -11,8 +11,8 @@ const SignUp = () => {
     password: "",
     geolocation: "",
   });
-  const navigate = useNavigate();
-  const URL = "http://localhost:5000";
+  const navigate = useNavigate()
+  const URL = "https://gofoodmern-backend-cpmu.onrender.com";
   const handlevalue = (e) => {
     const { value, name } = e.target;
     setCredentials({ ...credentials, [name]: value });
