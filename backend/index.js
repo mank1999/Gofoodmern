@@ -9,7 +9,7 @@ console.log('env port' ,process.env.port_no)
 const MongoDB = require("./db");
 MongoDB();
 app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000")
+  res.setHeader("Access-Control-Allow-Origin", "https://gofoodmern-frontend-i6vl.onrender.com")
   res.header(
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With,Content-Type,Accept "
